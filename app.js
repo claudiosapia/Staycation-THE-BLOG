@@ -1,7 +1,7 @@
 const { rejects } = require('assert');
 const express = require('express');
 const app = express();
-const port = 5000;
+
 const mongoose = require('mongoose');
 
 app.use("/public", express.static(__dirname+ '/public'));
@@ -127,8 +127,13 @@ app.post('/search', (req, res)=>{
 })
 
 
-app.listen(port, ()=> {
-    console.log("Server is running");
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+
+app.listen(port, function() {
+  console.log("Server started on port 3000");
 });
 
 
